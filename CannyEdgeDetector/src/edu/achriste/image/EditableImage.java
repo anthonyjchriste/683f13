@@ -1,11 +1,14 @@
 package edu.achriste.image;
 
-import javax.imageio.ImageIO;
+import org.apache.commons.imaging.ImageReadException;
+import org.apache.commons.imaging.Imaging;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+
 
 public class EditableImage {
   private BufferedImage image;
@@ -16,11 +19,15 @@ public class EditableImage {
 
   public EditableImage(File file) {
     try {
-      this.image = ImageIO.read(file);
+      this.image = Imaging.getBufferedImage(file);
       if(image == null) {
         throw new IOException();
       }
     } catch (IOException e) {
+      System.out.println("Could not load image file " + file);
+      e.printStackTrace();
+    }
+    catch (ImageReadException e) {
       System.out.println("Could not load image file " + file);
       e.printStackTrace();
     }
