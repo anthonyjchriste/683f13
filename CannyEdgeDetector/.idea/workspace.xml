@@ -2,18 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21451c13-5647-48c5-b652-3a11dcd0e818" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CannyEdgeDetector.iml" afterPath="$PROJECT_DIR$/CannyEdgeDetector.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.gitignore" afterPath="$PROJECT_DIR$/../.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" afterPath="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java" afterPath="$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java" afterPath="$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java" afterPath="$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CannyEdgeDetector.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/EditableImage.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380666675849" ignored="false" />
-    <file path="/CannyEdgeDetectorUI.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380360431847" ignored="false" />
-    <file path="/CannyEdgeDetector.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380430809314" ignored="false" />
-    <file path="/Dummy.txt" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380665852195" ignored="false" />
+    <file path="/EditableImage.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380755635415" ignored="false" />
+    <file path="/CannyEdgeDetectorUI.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380756028982" ignored="false" />
+    <file path="/CannyEdgeDetector.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380756748159" ignored="false" />
+    <file path="/Dummy.txt" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380755409984" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/settings-1.0.0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-strict.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/maven-4.0.0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-frameset.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/profiles-1.0.0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xslt-1_0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/xpath/lib/xpath.jar!/org/intellij/lang/xpath/xslt/resources/documentation.xsl" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/xpath/lib/xpath.jar!/org/intellij/lang/xpath/xslt/resources/documentation.xml" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/catalog.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/XMLSchema.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/xpath/lib/xpath.jar!/org/intellij/lang/xpath/xslt/resources/xslt-schema.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/html5/xhtml5.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/XMLSchema-instance.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/resources/relaxng.rng" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-transitional.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xml.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xslt-2_0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xinclude.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
+    <file path="/ImagePanel.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380755670973" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +98,7 @@
       <file leaf-file-name="EditableImage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="26" selection-start="837" selection-end="837" vertical-scroll-proportion="0.0">
+            <state line="96" column="29" selection-start="2626" selection-end="2626" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -86,25 +107,25 @@
       <file leaf-file-name="ImagePanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
+            <state line="54" column="3" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CannyEdgeDetectorUI.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CannyEdgeDetectorUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="29" selection-start="1996" selection-end="1996" vertical-scroll-proportion="1.329879">
+            <state line="80" column="0" selection-start="2293" selection-end="2293" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CannyEdgeDetector.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CannyEdgeDetector.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
+            <state line="15" column="0" selection-start="287" selection-end="287" vertical-scroll-proportion="0.5090498">
               <folding />
             </state>
           </provider>
@@ -128,17 +149,18 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java" />
-        <option value="$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java" />
-        <option value="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" />
         <option value="$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java" />
+        <option value="$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java" />
+        <option value="$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java" />
+        <option value="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="55" />
-    <option name="width" value="1920" />
-    <option name="height" value="1025" />
+    <option name="x" value="1" />
+    <option name="y" value="27" />
+    <option name="width" value="1598" />
+    <option name="height" value="872" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -174,9 +196,15 @@
               <option name="myItemId" value="CannyEdgeDetector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+              <option name="myItemId" value="CannyEdgeDetector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CannyEdgeDetector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -186,6 +214,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CannyEdgeDetector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -424,31 +456,31 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="55" width="1920" height="1025" extended-state="6" />
+    <frame x="1" y="27" width="1598" height="872" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32670453" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24919786" sideWeight="0.67184037" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32815966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19455253" sideWeight="0.67471594" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3252841" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286119" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Analysis" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -520,6 +552,62 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="29" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="29" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="0" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
           <folding />
         </state>
@@ -546,30 +634,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/ImagePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1083" selection-end="1083" vertical-scroll-proportion="0.0">
+        <state line="54" column="3" selection-start="1308" selection-end="1308" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="26" selection-start="837" selection-end="837" vertical-scroll-proportion="0.0">
+        <state line="96" column="29" selection-start="2626" selection-end="2626" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="29" selection-start="1996" selection-end="1996" vertical-scroll-proportion="1.329879">
+        <state line="80" column="0" selection-start="2293" selection-end="2293" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="287" selection-end="287" vertical-scroll-proportion="0.5090498">
           <folding />
         </state>
       </provider>
@@ -603,7 +691,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Python 2.7.3 (/usr/bin/python) interpreter library</last-edited>
+          <last-edited>Python 2.7.5 (/usr/bin/python) interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -615,7 +703,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.7 (1)</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -632,7 +720,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

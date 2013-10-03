@@ -50,6 +50,7 @@ class ImagePanel extends JPanel {
    */
   void setBufferedImage(BufferedImage image) {
     this.bufferedImage = image;
+    this.resize();
     this.repaint();
   }
 }

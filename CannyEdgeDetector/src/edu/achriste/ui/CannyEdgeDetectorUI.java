@@ -46,7 +46,8 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
     Options for list.
    */
     String[] OPTIONS = {
-            "Original Image"
+            "Original Image",
+            "Smoothed Image"
     };
     optionsList = new JList<String>(OPTIONS);
     optionsList.addListSelectionListener(this);
@@ -72,9 +73,12 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
 
       switch (i) {
         case 0: // Original originalImage
-          //imagePanel.setBufferedImage(images.get(ORIGINAL_IMAGE));
-          //out.setText(messages.get(ORIGINAL_IMAGE));
+          imagePanel.setBufferedImage(originalImage.getImage());
           break;
+        case 1:
+          originalImage.padWithZeros(10);
+          imagePanel.setBufferedImage(originalImage.getImage());
+
       }
     }
   }

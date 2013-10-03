@@ -46,12 +46,19 @@ public class EditableImage {
   }
 
   public int getGrayscale(int x, int y) {
-    return (image.getRGB(x, y) >> 16) & 0xFF;
+    return grayscaleFromRgb(image.getRGB(x, y));
   }
 
   public void setGrayscale(int x, int y, int value) {
-    int grayscale =  (value << 16) | (value << 8) | value | (255 << 24);
-    image.setRGB(x, y, grayscale);
+    image.setRGB(x, y, rgbFromGrayscale(value));
+  }
+
+  public static int grayscaleFromRgb(int rgb) {
+    return (rgb >> 16) & 0xFF;
+  }
+
+  public static int rgbFromGrayscale(int grayscale) {
+    return (grayscale << 16) | (grayscale << 8) | grayscale | (255 << 24);
   }
 
   public BufferedImage getImage() {
@@ -64,6 +71,32 @@ public class EditableImage {
     WritableRaster writeableRaster = image.copyData(null);
     return new EditableImage(new BufferedImage(colorModel, writeableRaster, isAlphaPremultiplied, null));
   }
+
+  public void padWithZeros(int n) {
+    BufferedImage paddedImage;
+    int paddedWidth = image.getWidth() + (2 * n);
+    int paddedHeight = image.getHeight() + (2 * n);
+
+    paddedImage = new BufferedImage(paddedWidth, paddedHeight, BufferedImage.TYPE_BYTE_INDEXED);
+
+    // First set everything to 0
+    for(int r = 0; r < paddedImage.getHeight(); r++) {
+      for(int c = 0; c < paddedImage.getWidth(); c++) {
+        paddedImage.setRGB(c, r, rgbFromGrayscale(0));
+      }
+    }
+
+    // Insert original image into padded image
+    for(int r = 0; r < image.getHeight(); r++) {
+      for(int c = 0; c < image.getWidth(); c++) {
+        paddedImage.setRGB(c + n, r + n, image.getRGB(c, r));
+      }
+    }
+
+    // Finally, update the image
+    this.image = paddedImage;
+  }
+
 
 
 }
