@@ -1,5 +1,6 @@
 package edu.achriste.ui;
 
+import edu.achriste.image.CannyEdgeDetector;
 import edu.achriste.image.EditableImage;
 
 import javax.swing.JFrame;
@@ -76,7 +77,7 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
           imagePanel.setBufferedImage(originalImage.getImage());
           break;
         case 1:
-          originalImage.padWithZeros(10);
+          CannyEdgeDetector edgeDetector = new CannyEdgeDetector(originalImage);
           imagePanel.setBufferedImage(originalImage.getImage());
 
       }

@@ -1,6 +1,8 @@
 package edu.achriste.image;
 
+import org.apache.commons.imaging.ImageFormat;
 import org.apache.commons.imaging.ImageReadException;
+import org.apache.commons.imaging.ImageWriteException;
 import org.apache.commons.imaging.Imaging;
 
 import java.awt.image.BufferedImage;
@@ -8,6 +10,8 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+
+import static org.apache.commons.imaging.ImageFormat.IMAGE_FORMAT_TIFF;
 
 
 public class EditableImage {
@@ -97,6 +101,13 @@ public class EditableImage {
     this.image = paddedImage;
   }
 
-
-
+  public void writeImage(String fileName) {
+    try {
+      Imaging.writeImage(image, new File(fileName), IMAGE_FORMAT_TIFF, null);
+    } catch (ImageWriteException e) {
+      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    } catch (IOException e) {
+      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    }
+  }
 }
