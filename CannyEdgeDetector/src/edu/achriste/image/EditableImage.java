@@ -16,9 +16,11 @@ import static org.apache.commons.imaging.ImageFormat.IMAGE_FORMAT_TIFF;
 
 public class EditableImage {
   private BufferedImage image;
+  private int padding;
 
   public EditableImage(BufferedImage image) {
     this.image = image;
+    this.padding = 0;
   }
 
   public EditableImage(File file) {
@@ -78,6 +80,7 @@ public class EditableImage {
 
   public void padWithZeros(int n) {
     BufferedImage paddedImage;
+    this.padding = n;
     int paddedWidth = image.getWidth() + (2 * n);
     int paddedHeight = image.getHeight() + (2 * n);
 
@@ -99,6 +102,27 @@ public class EditableImage {
 
     // Finally, update the image
     this.image = paddedImage;
+  }
+
+  public void removePadding() {
+    BufferedImage unpaddedImage;
+
+    int width = image.getWidth() - (2 * this.padding);
+    int height = image.getHeight() - (2 * this.padding);
+
+    unpaddedImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_INDEXED);
+
+    // Insert original image into padded image
+    for(int r = padding; r < image.getHeight() - padding; r++) {
+      for(int c = padding; c < image.getWidth() - padding; c++) {
+        unpaddedImage.setRGB(c - padding, r - padding, image.getRGB(c, r));
+      }
+    }
+
+    // Finally, update the image
+    this.image = unpaddedImage;
+
+    this.padding = 0;
   }
 
   public void writeImage(String fileName) {

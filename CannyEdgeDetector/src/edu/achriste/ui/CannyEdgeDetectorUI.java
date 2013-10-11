@@ -48,7 +48,9 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
    */
     String[] OPTIONS = {
             "Original Image",
-            "Smoothed Image"
+            "Smoothed Image sigma = 1.5",
+            "Smoothed Image sigma = 2.5",
+            "Smoothed Image sigma = 3.5"
     };
     optionsList = new JList<String>(OPTIONS);
     optionsList.addListSelectionListener(this);
@@ -69,6 +71,7 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
    */
   @Override
   public void valueChanged(ListSelectionEvent e) {
+    CannyEdgeDetector edgeDetector;
     if (!e.getValueIsAdjusting()) {
       int i = optionsList.getSelectedIndex();
 
@@ -77,9 +80,20 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
           imagePanel.setBufferedImage(originalImage.getImage());
           break;
         case 1:
-          CannyEdgeDetector edgeDetector = new CannyEdgeDetector(originalImage);
-          imagePanel.setBufferedImage(originalImage.getImage());
-
+          EditableImage smooth15 = originalImage.copy();
+          edgeDetector = new CannyEdgeDetector(smooth15, 1.5);
+          imagePanel.setBufferedImage(smooth15.getImage());
+          break;
+        case 2:
+          EditableImage smooth25 = originalImage.copy();
+          edgeDetector = new CannyEdgeDetector(smooth25, 2.5);
+          imagePanel.setBufferedImage(smooth25.getImage());
+          break;
+        case 3:
+          EditableImage smooth35 = originalImage.copy();
+          edgeDetector = new CannyEdgeDetector(smooth35, 3.5);
+          imagePanel.setBufferedImage(smooth35.getImage());
+          break;
       }
     }
   }
