@@ -50,7 +50,10 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
             "Original Image",
             "Smoothed Image sigma = 1.5",
             "Smoothed Image sigma = 2.5",
-            "Smoothed Image sigma = 3.5"
+            "Smoothed Image sigma = 3.5",
+            "Feature Detection sigma = 1.5",
+            "Feature Detection sigma = 2.5",
+            "Feature Detection sigma = 3.5",
     };
     optionsList = new JList<String>(OPTIONS);
     optionsList.addListSelectionListener(this);
@@ -82,17 +85,41 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
         case 1:
           EditableImage smooth15 = originalImage.copy();
           edgeDetector = new CannyEdgeDetector(smooth15, 1.5);
+          edgeDetector.applyGaussianFilter();
           imagePanel.setBufferedImage(smooth15.getImage());
           break;
         case 2:
           EditableImage smooth25 = originalImage.copy();
           edgeDetector = new CannyEdgeDetector(smooth25, 2.5);
+          edgeDetector.applyGaussianFilter();
           imagePanel.setBufferedImage(smooth25.getImage());
           break;
         case 3:
           EditableImage smooth35 = originalImage.copy();
           edgeDetector = new CannyEdgeDetector(smooth35, 3.5);
+          edgeDetector.applyGaussianFilter();
           imagePanel.setBufferedImage(smooth35.getImage());
+          break;
+        case 4:
+          EditableImage feature15 = originalImage.copy();
+          edgeDetector = new CannyEdgeDetector(feature15, 1.5);
+          edgeDetector.applyGaussianFilter();
+          edgeDetector.applyFeatureDetection();
+          imagePanel.setBufferedImage(feature15.getImage());
+          break;
+        case 5:
+          EditableImage feature25 = originalImage.copy();
+          edgeDetector = new CannyEdgeDetector(feature25, 2.5);
+          edgeDetector.applyGaussianFilter();
+          edgeDetector.applyFeatureDetection();
+          imagePanel.setBufferedImage(feature25.getImage());
+          break;
+        case 6:
+          EditableImage feature35 = originalImage.copy();
+          edgeDetector = new CannyEdgeDetector(feature35, 3.5);
+          edgeDetector.applyGaussianFilter();
+          edgeDetector.applyFeatureDetection();
+          imagePanel.setBufferedImage(feature35.getImage());
           break;
       }
     }
