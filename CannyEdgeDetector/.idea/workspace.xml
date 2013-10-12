@@ -3,14 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="21451c13-5647-48c5-b652-3a11dcd0e818" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" afterPath="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java" afterPath="$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CannyEdgeDetector.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/EditableImage.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381476758706" ignored="false" />
     <file path="/CannyEdgeDetectorUI.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381566085550" ignored="false" />
-    <file path="/CannyEdgeDetector.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381570114292" ignored="false" />
+    <file path="/CannyEdgeDetector.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381614377709" ignored="false" />
     <file path="/Dummy.txt" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381552351258" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/settings-1.0.0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-strict.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
@@ -109,19 +107,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CannyEdgeDetectorUI.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="CannyEdgeDetectorUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="59" selection-start="4013" selection-end="4013" vertical-scroll-proportion="0.7972973">
+            <state line="118" column="59" selection-start="4013" selection-end="4013" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CannyEdgeDetector.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CannyEdgeDetector.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="113" selection-start="1813" selection-end="1813" vertical-scroll-proportion="0.0">
+            <state line="61" column="40" selection-start="2004" selection-end="2004" vertical-scroll-proportion="0.3918919">
               <folding />
             </state>
           </provider>
@@ -630,13 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="113" selection-start="1813" selection-end="1813" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/EditableImage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="117" column="44" selection-start="3363" selection-end="3363" vertical-scroll-proportion="0.0">
@@ -653,7 +644,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/ui/CannyEdgeDetectorUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="59" selection-start="4013" selection-end="4013" vertical-scroll-proportion="0.7972973">
+        <state line="118" column="59" selection-start="4013" selection-end="4013" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="40" selection-start="2004" selection-end="2004" vertical-scroll-proportion="0.3918919">
           <folding />
         </state>
       </provider>

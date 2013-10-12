@@ -10,7 +10,8 @@ public class CannyEdgeDetector {
   private final int GRADIENT_X = 0;
   private final int GRADIENT_Y = 1;
   private final int GRADIENT_STRENGTH = 2;
-  private final int GRADIENT_DIRECTION = 3;
+  private final int GRADIENT_STRENGTH_NORM = 3;
+  private final int GRADIENT_DIRECTION = 4;
 
   public CannyEdgeDetector(EditableImage image, double sigma) {
     this.image = image;
@@ -37,7 +38,8 @@ public class CannyEdgeDetector {
   }
 
   public void applyFeatureDetection() {
-    gradients = new double[image.getHeight()][image.getWidth()][4];
+    gradients = new double[image.getHeight()][image.getWidth()][5];
+    double norm = 0;
 
     double[] sobelXX = {1, 2, 1};
     double[] sobelXY = {-1, 0, 1};
@@ -52,7 +54,15 @@ public class CannyEdgeDetector {
         gradients[r][c][GRADIENT_X] = convolude(sobelXX, sobelXY, r, c);
         gradients[r][c][GRADIENT_Y] = convolude(sobelYX, sobelYY, r, c);
         gradients[r][c][GRADIENT_STRENGTH] = Math.sqrt(Math.pow(gradients[r][c][GRADIENT_X], 2) + Math.pow(gradients[r][c][GRADIENT_Y], 2));
-        gradients[r][c][GRADIENT_DIRECTION] = Math.toDegrees(Math.atan2(gradients[r][c][GRADIENT_Y], gradients[r][c][GRADIENT_X]));
+        gradients[r][c][GRADIENT_DIRECTION] = roundAngle(Math.atan2(gradients[r][c][GRADIENT_Y], gradients[r][c][GRADIENT_X]));
+        norm += gradients[r][c][GRADIENT_STRENGTH];
+      }
+    }
+
+    // Find normalized gradient strength
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
+        gradients[r][c][GRADIENT_STRENGTH_NORM] = gradients[r][c][GRADIENT_STRENGTH] / norm;
       }
     }
 
@@ -60,7 +70,7 @@ public class CannyEdgeDetector {
     image.removePadding();
 
     for(int r = 0; r < image.getHeight() - 2; r++) {
-      for(int c = 0; c < image.getWidth() - 2; c++) {;
+      for(int c = 0; c < image.getWidth() - 2; c++) {
         image.setGrayscale(c, r, (int)gradients[r][c][GRADIENT_STRENGTH]);
       }
     }
@@ -87,6 +97,30 @@ public class CannyEdgeDetector {
     }
 
     return sum;
+  }
+
+  private int roundAngle(double rads) {
+    double degs = Math.toDegrees(rads);
+
+    // Make sure we're using a positive angle
+    if(degs < 0) {
+      degs = 180 + degs;
+    }
+
+    if((degs >= 0 && degs < 22.5) || (degs >= 157.5 && degs <= 180)) {
+      degs = 0;
+    }
+    else if((degs >= 22.5 && degs < 67.5)){
+      degs = 45;
+    }
+    else if((degs >= 67.5 && degs < 112.5)){
+      degs = 90;
+    }
+    else if((degs >= 112.5 && degs < 157.5)){
+      degs = 90;
+    }
+
+    return (int) degs;
   }
 
   private double[] getGaussianKernel() {
