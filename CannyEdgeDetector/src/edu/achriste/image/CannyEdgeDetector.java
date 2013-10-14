@@ -270,12 +270,47 @@ public class CannyEdgeDetector {
     }
 
     // Third, trace from t1s to t2s
-    // Second, set all values greater than t2 to white
     for(int r = 0; r < gradients.length; r++) {
       for(int c = 0; c < gradients[r].length; c++) {
         if(gradients[r][c][HYSTERESIS] == 255) {
-          //applyHysteresis(r, c, t1, t2);
+          applyHysteresis(r - 1, c, t1, t2);
+          applyHysteresis(r - 1, c + 1, t1, t2);
+          applyHysteresis(r, c + 1, t1, t2);
+          applyHysteresis(r + 1, c + 1, t1, t2);
+          applyHysteresis(r + 1, c, t1, t2);
+          applyHysteresis(r + 1, c - 1, t1, t2);
+          applyHysteresis(r, c - 1, t1, t2);
+          applyHysteresis(r - 1, c - 1, t1, t2);
         }
+      }
+    }
+
+    // Set any remaining pixels to black
+    // Also set between thresholds image
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
+        if(gradients[r][c][HYSTERESIS] == 127 || gradients[r][c][HYSTERESIS] == -1) {
+          imageBetweenThreshold.setGrayscale(c, r, 127);
+        }
+        else {
+          imageBetweenThreshold.setGrayscale(c, r, 0);
+        }
+        if(gradients[r][c][HYSTERESIS] == -1) {
+          gradients[r][c][HYSTERESIS] = 0;
+        }
+      }
+    }
+
+    // Set high and hysteresis images
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
+        if(gradients[r][c][HYSTERESIS] == 255) {
+          imageHighThreshold.setGrayscale(c, r, 255);
+        }
+        else {
+          imageHighThreshold.setGrayscale(c, r, 0);
+        }
+        imageHysteresis.setGrayscale(c, r, (int) gradients[r][c][HYSTERESIS]);
       }
     }
   }

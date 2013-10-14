@@ -3,13 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="21451c13-5647-48c5-b652-3a11dcd0e818" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" afterPath="$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CannyEdgeDetector.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/EditableImage.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381476758706" ignored="false" />
     <file path="/CannyEdgeDetectorUI.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381733188698" ignored="false" />
-    <file path="/CannyEdgeDetector.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381737628324" ignored="false" />
+    <file path="/CannyEdgeDetector.java" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381742227676" ignored="false" />
     <file path="/Dummy.txt" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1381552351258" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/settings-1.0.0.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/lib/idea.jar!/standardSchemas/xhtml1-strict.xsd" changelist="21451c13-5647-48c5-b652-3a11dcd0e818" time="1380670233324" ignored="false" />
@@ -102,7 +101,7 @@
       <file leaf-file-name="CannyEdgeDetector.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="225" column="97" selection-start="9013" selection-end="9013" vertical-scroll-proportion="2.837838">
+            <state line="298" column="42" selection-start="11460" selection-end="11460" vertical-scroll-proportion="0.5743243">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -648,7 +647,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/achriste/image/CannyEdgeDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="97" selection-start="9013" selection-end="9013" vertical-scroll-proportion="2.837838">
+        <state line="298" column="42" selection-start="11460" selection-end="11460" vertical-scroll-proportion="0.5743243">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
