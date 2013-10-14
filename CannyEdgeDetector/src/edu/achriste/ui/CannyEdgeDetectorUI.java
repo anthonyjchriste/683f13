@@ -6,6 +6,7 @@ import edu.achriste.image.EditableImage;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
@@ -25,7 +26,6 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
   // User interface components
   private ImagePanel imagePanel;
   private JList<String> optionsList;
-  private JTextField out;
 
   private EditableImage originalImage;
   private CannyEdgeDetector cannyEdgeDetector15;
@@ -39,13 +39,7 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
     this.setLayout(new BorderLayout());
     JPanel optionsPanel = new JPanel(new BorderLayout());
 
-    out = new JTextField();
-    out.setEditable(false);
-
     originalImage = new EditableImage(new File("img/board.tif"));
-    cannyEdgeDetector15 = new CannyEdgeDetector(originalImage, 1.5);
-    cannyEdgeDetector25 = new CannyEdgeDetector(originalImage, 2.5);
-    cannyEdgeDetector35 = new CannyEdgeDetector(originalImage, 3.5);
     imagePanel = new ImagePanel(originalImage.getImage());
     imagePanel.resize();
 
@@ -87,29 +81,31 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
     optionsList.setSelectedIndex(0);
 
     optionsPanel.add(optionsList, BorderLayout.CENTER);
-    optionsPanel.add(out, BorderLayout.SOUTH);
     optionsPanel.setPreferredSize(new Dimension(250, imagePanel.getHeight()));
 
     this.add(imagePanel, BorderLayout.CENTER);
     this.add(optionsPanel, BorderLayout.WEST);
+
+    // Do computations
+    cannyEdgeDetector15 = new CannyEdgeDetector(originalImage, 1.5);
+    cannyEdgeDetector25 = new CannyEdgeDetector(originalImage, 2.5);
+    cannyEdgeDetector35 = new CannyEdgeDetector(originalImage, 3.5);
+    writeImages();
   }
-
-
 
   /**
    * Updates the originalImage and message depending on which menu option is chosen.
    */
   @Override
   public void valueChanged(ListSelectionEvent e) {
-    CannyEdgeDetector edgeDetector;
     if (!e.getValueIsAdjusting()) {
       int i = optionsList.getSelectedIndex();
 
       switch (i) {
-        case 0: // Original originalImage
+        case 0:
           imagePanel.setBufferedImage(originalImage.getImage());
           break;
-        case 1: break;
+        case 1: break; // Spacer
         case 2:
           imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).getImage());
           break;
@@ -134,7 +130,7 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
         case 9:
           imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).getImage());
           break;
-        case 10: break;
+        case 10: break; // Spacer
         case 11:
           imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).getImage());
           break;
@@ -159,7 +155,7 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
         case 18:
           imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).getImage());
           break;
-        case 19: break;
+        case 19: break; // Spacer
         case 20:
           imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).getImage());
           break;
@@ -186,6 +182,39 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
           break;
       }
     }
+  }
+
+  /**
+   * Write all computed images to a file.
+   */
+  private void writeImages() {
+    originalImage.writeImage("images/original.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).writeImage("images/1.5/0_gaussian.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GRADIENT_X_NORM).writeImage("images/1.5/1_gradient_x_norm.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GRADIENT_Y_NORM).writeImage("images/1.5/2_gradient_y_norm.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GRADIENT_STRENGTH_NORM).writeImage("images/1.5/3_gradient_strength_norm.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_NON_MAXIMUM_SUPPRESSION).writeImage("images/1.5/4_non_maximum_suppression.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_HIGH_THRESHOLD).writeImage("images/1.5/5_high_threshold.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_BETWEEN_THRESHOLD).writeImage("images/1.5/6_between_thresholds.tiff");
+    cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).writeImage("images/1.5/7_final_hysteresis.tiff");
+
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).writeImage("images/2.5/0_gaussian.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GRADIENT_X_NORM).writeImage("images/2.5/1_gradient_x_norm.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GRADIENT_Y_NORM).writeImage("images/2.5/2_gradient_y_norm.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GRADIENT_STRENGTH_NORM).writeImage("images/2.5/3_gradient_strength_norm.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_NON_MAXIMUM_SUPPRESSION).writeImage("images/2.5/4_non_maximum_suppression.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_HIGH_THRESHOLD).writeImage("images/2.5/5_high_threshold.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_BETWEEN_THRESHOLD).writeImage("images/2.5/6_between_thresholds.tiff");
+    cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).writeImage("images/2.5/7_final_hysteresis.tiff");
+
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).writeImage("images/3.5/0_gaussian.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GRADIENT_X_NORM).writeImage("images/3.5/1_gradient_x_norm.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GRADIENT_Y_NORM).writeImage("images/3.5/2_gradient_y_norm.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GRADIENT_STRENGTH_NORM).writeImage("images/3.5/3_gradient_strength_norm.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_NON_MAXIMUM_SUPPRESSION).writeImage("images/3.5/4_non_maximum_suppression.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_HIGH_THRESHOLD).writeImage("images/3.5/5_high_threshold.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_BETWEEN_THRESHOLD).writeImage("images/3.5/6_between_thresholds.tiff");
+    cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).writeImage("images/3.5/7_final_hysteresis.tiff");
   }
 
   /**
