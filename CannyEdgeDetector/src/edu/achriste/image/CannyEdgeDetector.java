@@ -16,6 +16,7 @@ public class CannyEdgeDetector {
   private final int GRADIENT_STRENGTH = 2;
   private final int GRADIENT_STRENGTH_NORM = 3;
   private final int GRADIENT_DIRECTION = 4;
+  private final int HYSTERESIS = 5;
 
   private Map<Integer, EditableImage> imageMap;
   public static final int IMAGE_GAUSSIAN = 0;
@@ -46,6 +47,14 @@ public class CannyEdgeDetector {
     this.image = image;
     this.sigma = sigma;
     this.imageMap = new HashMap<Integer, EditableImage>();
+
+    gradients = new double[image.getHeight()][image.getWidth()][7];
+
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
+        gradients[r][c][HYSTERESIS] = -1;
+      }
+    }
 
     imageGaussian = new EditableImage(image.copy().getImage());
     imageGradientX = new EditableImage(image.copy().getImage());
@@ -117,7 +126,7 @@ public class CannyEdgeDetector {
 
   private void applyFeatureDetection() {
     EditableImage tmpImage = imageGaussian.copy();
-    gradients = new double[tmpImage.getHeight()][tmpImage.getWidth()][6];
+
 
     double[] sobelXX = {1, 2, 1};
     double[] sobelXY = {-1, 0, 1};
@@ -190,115 +199,107 @@ public class CannyEdgeDetector {
   }
 
   private void applyNonMaximumSuppression() {
-    imageNonMaximumSuppression = imageGradientStrength.copy();
+    imageNonMaximumSuppression = imageGradientStrengthNorm.copy();
+
     for (int r = 0; r < gradients.length; r++) {
       for (int c = 0; c < gradients[r].length; c++) {
         switch ((int) gradients[r][c][GRADIENT_DIRECTION]) {
           case 0:
-            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r, c - 1, r, c + 1)) {
+            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r - 1, c, r + 1, c)) {
               imageNonMaximumSuppression.setGrayscale(c, r, 0);
-              //gradients[r][c][GRADIENT_STRENGTH] = 0;
-              //gradients[r][c][GRADIENT_STRENGTH_NORM] = 0;
+              gradients[r][c][HYSTERESIS] = 0;
             }
             break;
           case 45:
-            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r - 1, c + 1, r + 1, c - 1)) {
+            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r - 1, c - 1, r + 1, c + 1)) {
               imageNonMaximumSuppression.setGrayscale(c, r, 0);
-              //gradients[r][c][GRADIENT_STRENGTH] = 0;
-              //gradients[r][c][GRADIENT_STRENGTH_NORM] = 0;
+              gradients[r][c][HYSTERESIS] = 0;
             }
             break;
           case 90:
-            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r - 1, c, r + 1, c)) {
+            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r, c - 1, r, c + 1)) {
               imageNonMaximumSuppression.setGrayscale(c, r, 0);
-              //gradients[r][c][GRADIENT_STRENGTH] = 0;
-              //gradients[r][c][GRADIENT_STRENGTH_NORM] = 0;
+              gradients[r][c][HYSTERESIS] = 0;
             }
             break;
           case 135:
-            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r - 1, c - 1, r + 1, c + 1)) {
+            if (shouldSuppress((int) gradients[r][c][GRADIENT_STRENGTH], r - 1, c + 1, r + 1, c - 1)) {
               imageNonMaximumSuppression.setGrayscale(c, r, 0);
-              //gradients[r][c][GRADIENT_STRENGTH] = 0;
-              //gradients[r][c][GRADIENT_STRENGTH_NORM] = 0;
+              gradients[r][c][HYSTERESIS] = 0;
             }
             break;
         }
       }
     }
+    imageMap.put(IMAGE_NON_MAXIMUM_SUPPRESSION, imageNonMaximumSuppression);
   }
 
   private boolean shouldSuppress(int gradStrength, int r1, int c1, int r2, int c2) {
     if (r1 < gradients.length && r1 >= 0 && c1 < gradients[r1].length && c1 >= 0) {
-      if (gradStrength <= gradients[r1][c1][GRADIENT_STRENGTH]) {
-        return false;
+      if (gradStrength < gradients[r1][c1][GRADIENT_STRENGTH]) {
+        return true;
       }
     }
 
     if (r2 < gradients.length && r2 >= 0 && c2 < gradients[r2].length && c2 >= 0) {
-      if (gradStrength <= gradients[r2][c2][GRADIENT_STRENGTH]) {
-        return false;
+      if (gradStrength < gradients[r2][c2][GRADIENT_STRENGTH]) {
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   private void applyHysteresis(double t1, double t2) {
-    int[][] hysteresisMatrix = new int[gradients.length][gradients[0].length];
-
-    // First, apply t2
-    for (int r = 0; r < gradients.length; r++) {
-      for (int c = 0; c < gradients[r].length; c++) {
+    // First, set all values less than t1 to black
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
         if(gradients[r][c][GRADIENT_STRENGTH_NORM] < t1) {
-          imageHighThreshold.setGrayscale(c, r, 0);
-          imageBetweenThreshold.setGrayscale(c, r, 0);
-          imageHysteresis.setGrayscale(c, r, 0);
-        }
-        else if(gradients[r][c][GRADIENT_STRENGTH_NORM] > t2) {
-          imageHighThreshold.setGrayscale(c, r, 255);
-          imageHysteresis.setGrayscale(c, r, 255);
-        }
-        else {
-          imageBetweenThreshold.setGrayscale(c, r, 127);
-          imageHysteresis.setGrayscale(c, r, 127);
+          gradients[r][c][HYSTERESIS] = 0;
         }
       }
     }
 
-    //  Now apply t1
-    // First, apply t2
-    for (int r = 0; r < gradients.length; r++) {
-      for (int c = 0; c < gradients[r].length; c++) {
-        hysteresisMatrix[r][c] = gradients[r][c][GRADIENT_STRENGTH_NORM] > t2 ? 255 : 0;
+    // Second, set all values greater than t2 to white
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
+        if(gradients[r][c][GRADIENT_STRENGTH_NORM] > t2) {
+          gradients[r][c][HYSTERESIS] = 255;
+        }
       }
     }
 
-    /**
-    // Now perform tracing
-    for (int r = 0; r < gradients.length; r++) {
-      for (int c = 0; c < gradients[r].length; c++) {
-        if(hysteresisMatrix[r][c] == 255) {
-          //applyHysteresis(r, c, t1, t2, hysteresisMatrix);
+    // Third, trace from t1s to t2s
+    // Second, set all values greater than t2 to white
+    for(int r = 0; r < gradients.length; r++) {
+      for(int c = 0; c < gradients[r].length; c++) {
+        if(gradients[r][c][HYSTERESIS] == 255) {
+          //applyHysteresis(r, c, t1, t2);
         }
       }
-    }  */
+    }
   }
 
-  private void applyHysteresis(int r, int c, double t1, double t2, int[][] hysteresisMatrix) {
-    if(r < 0 || r >= hysteresisMatrix.length) {
+  private void applyHysteresis(int r, int c, double t1, double t2) {
+    if(r < 0 || r >= gradients.length) {
       return;
     }
-    if(c < 0 || c >= hysteresisMatrix[r].length) {
+    if(c < 0 || c >= gradients[r].length) {
       return;
     }
-    if (gradients[r][c][GRADIENT_STRENGTH_NORM] < t1) {
+    if(gradients[r][c][HYSTERESIS] != -1) {
       return;
     }
-    if(gradients[r][c][GRADIENT_STRENGTH_NORM] > t2) {
-      return;
-    }
-    hysteresisMatrix[r][c] = 127;
 
+    gradients[r][c][HYSTERESIS] = 127;
+    applyHysteresis(r - 1, c, t1, t2);
+    applyHysteresis(r - 1, c + 1, t1, t2);
+    applyHysteresis(r, c + 1, t1, t2);
+    applyHysteresis(r + 1, c + 1, t1, t2);
+    applyHysteresis(r + 1, c, t1, t2);
+    applyHysteresis(r + 1, c - 1, t1, t2);
+    applyHysteresis(r, c - 1, t1, t2);
+    applyHysteresis(r - 1, c - 1, t1, t2);
   }
 
   private double convolude(EditableImage convoludeImage, double[] kernel, int row, int col) {
