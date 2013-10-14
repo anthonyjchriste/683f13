@@ -28,6 +28,9 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
   private JTextField out;
 
   private EditableImage originalImage;
+  private CannyEdgeDetector cannyEdgeDetector15;
+  private CannyEdgeDetector cannyEdgeDetector25;
+  private CannyEdgeDetector cannyEdgeDetector35;
 
   /**
    * Sets up the user interface and display the original originalImage.
@@ -40,6 +43,9 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
     out.setEditable(false);
 
     originalImage = new EditableImage(new File("img/board.tif"));
+    cannyEdgeDetector15 = new CannyEdgeDetector(originalImage, 1.5);
+    cannyEdgeDetector25 = new CannyEdgeDetector(originalImage, 2.5);
+    cannyEdgeDetector35 = new CannyEdgeDetector(originalImage, 3.5);
     imagePanel = new ImagePanel(originalImage.getImage());
     imagePanel.resize();
 
@@ -48,12 +54,33 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
    */
     String[] OPTIONS = {
             "Original Image",
-            "Smoothed Image sigma = 1.5",
-            "Smoothed Image sigma = 2.5",
-            "Smoothed Image sigma = 3.5",
-            "Feature Detection sigma = 1.5",
-            "Feature Detection sigma = 2.5",
-            "Feature Detection sigma = 3.5",
+            "------ sigma = 1.5 ------",
+            "1.5 Gaussian",
+            "1.5 Gradient X Normalized",
+            "1.5 Gradient Y Normalized",
+            "1.5 Gradient Strength Normalized",
+            "1.5 Non-Maximum Suppression",
+            "1.5 High Threshold",
+            "1.5 Between Thresholds",
+            "1.5 Hysteresis",
+            "------ sigma = 2.5 ------",
+            "2.5 Gaussian",
+            "2.5 Gradient X Normalized",
+            "2.5 Gradient Y Normalized",
+            "2.5 Gradient Strength Normalized",
+            "2.5 Non-Maximum Suppression",
+            "2.5 High Threshold",
+            "2.5 Between Thresholds",
+            "2.5 Hysteresis",
+            "------ signma = 3.5 ------",
+            "3.5 Gaussian",
+            "3.5 Gradient X Normalized",
+            "3.5 Gradient Y Normalized",
+            "3.5 Gradient Strength Normalized",
+            "3.5 Non-Maximum Suppression",
+            "3.5 High Threshold",
+            "3.5 Between Thresholds",
+            "3.5 Hysteresis"
     };
     optionsList = new JList<String>(OPTIONS);
     optionsList.addListSelectionListener(this);
@@ -82,44 +109,80 @@ public class CannyEdgeDetectorUI extends JPanel implements ListSelectionListener
         case 0: // Original originalImage
           imagePanel.setBufferedImage(originalImage.getImage());
           break;
-        case 1:
-          EditableImage smooth15 = originalImage.copy();
-          edgeDetector = new CannyEdgeDetector(smooth15, 1.5);
-          edgeDetector.applyGaussianFilter();
-          imagePanel.setBufferedImage(smooth15.getImage());
-          break;
+        case 1: break;
         case 2:
-          EditableImage smooth25 = originalImage.copy();
-          edgeDetector = new CannyEdgeDetector(smooth25, 2.5);
-          edgeDetector.applyGaussianFilter();
-          imagePanel.setBufferedImage(smooth25.getImage());
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).getImage());
           break;
         case 3:
-          EditableImage smooth35 = originalImage.copy();
-          edgeDetector = new CannyEdgeDetector(smooth35, 3.5);
-          edgeDetector.applyGaussianFilter();
-          imagePanel.setBufferedImage(smooth35.getImage());
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GRADIENT_X_NORM).getImage());
           break;
         case 4:
-          EditableImage feature15 = originalImage.copy();
-          edgeDetector = new CannyEdgeDetector(feature15, 1.5);
-          edgeDetector.applyGaussianFilter();
-          edgeDetector.applyFeatureDetection();
-          imagePanel.setBufferedImage(feature15.getImage());
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GRADIENT_Y_NORM).getImage());
           break;
         case 5:
-          EditableImage feature25 = originalImage.copy();
-          edgeDetector = new CannyEdgeDetector(feature25, 2.5);
-          edgeDetector.applyGaussianFilter();
-          edgeDetector.applyFeatureDetection();
-          imagePanel.setBufferedImage(feature25.getImage());
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_GRADIENT_STRENGTH_NORM).getImage());
           break;
         case 6:
-          EditableImage feature35 = originalImage.copy();
-          edgeDetector = new CannyEdgeDetector(feature35, 3.5);
-          edgeDetector.applyGaussianFilter();
-          edgeDetector.applyFeatureDetection();
-          imagePanel.setBufferedImage(feature35.getImage());
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_NON_MAXIMUM_SUPPRESSION).getImage());
+          break;
+        case 7:
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_HIGH_THRESHOLD).getImage());
+          break;
+        case 8:
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_BETWEEN_THRESHOLD).getImage());
+          break;
+        case 9:
+          imagePanel.setBufferedImage(cannyEdgeDetector15.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).getImage());
+          break;
+        case 10: break;
+        case 11:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).getImage());
+          break;
+        case 12:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GRADIENT_X_NORM).getImage());
+          break;
+        case 13:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GRADIENT_Y_NORM).getImage());
+          break;
+        case 14:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_GRADIENT_STRENGTH_NORM).getImage());
+          break;
+        case 15:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_NON_MAXIMUM_SUPPRESSION).getImage());
+          break;
+        case 16:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_HIGH_THRESHOLD).getImage());
+          break;
+        case 17:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_BETWEEN_THRESHOLD).getImage());
+          break;
+        case 18:
+          imagePanel.setBufferedImage(cannyEdgeDetector25.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).getImage());
+          break;
+        case 19: break;
+        case 20:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GAUSSIAN).getImage());
+          break;
+        case 21:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GRADIENT_X_NORM).getImage());
+          break;
+        case 22:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GRADIENT_Y_NORM).getImage());
+          break;
+        case 23:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_GRADIENT_STRENGTH_NORM).getImage());
+          break;
+        case 24:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_NON_MAXIMUM_SUPPRESSION).getImage());
+          break;
+        case 25:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_HIGH_THRESHOLD).getImage());
+          break;
+        case 26:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_BETWEEN_THRESHOLD).getImage());
+          break;
+        case 27:
+          imagePanel.setBufferedImage(cannyEdgeDetector35.getImage(CannyEdgeDetector.IMAGE_HYSTERESIS).getImage());
           break;
       }
     }
