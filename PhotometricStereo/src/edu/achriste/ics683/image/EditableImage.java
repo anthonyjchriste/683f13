@@ -1,4 +1,4 @@
-package edu.achriste.image;
+package edu.achriste.ics683.image;
 
 import org.apache.commons.imaging.ImageReadException;
 import org.apache.commons.imaging.ImageWriteException;

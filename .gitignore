@@ -2,5 +2,3 @@
 *.jar
 CannyEdgeDetector/out/**
 CountingBalls/out/**
-CannyEdgeDetector/.idea/**
-CountingBalls/.idea/**
