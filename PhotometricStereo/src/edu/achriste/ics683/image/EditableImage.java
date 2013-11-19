@@ -10,7 +10,7 @@ import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 
-import static org.apache.commons.imaging.ImageFormat.IMAGE_FORMAT_TIFF;
+import static org.apache.commons.imaging.ImageFormat.IMAGE_FORMAT_PNG;
 
 /**
  * Provides extra functionality on top of a BufferedImage for easily modifying the contents of a BufferedImage.
@@ -19,6 +19,10 @@ import static org.apache.commons.imaging.ImageFormat.IMAGE_FORMAT_TIFF;
 public class EditableImage {
   private BufferedImage image;
   private int padding;
+
+  public EditableImage(int width, int height) {
+    this(new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY));
+  }
 
   /**
    * Create an EditableImage from a given BufferedImage.
@@ -194,7 +198,7 @@ public class EditableImage {
    */
   public void writeImage(String fileName) {
     try {
-      Imaging.writeImage(image, new File(fileName), IMAGE_FORMAT_TIFF, null);
+      Imaging.writeImage(image, new File(fileName), IMAGE_FORMAT_PNG, null);
     } catch (ImageWriteException e) {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     } catch (IOException e) {

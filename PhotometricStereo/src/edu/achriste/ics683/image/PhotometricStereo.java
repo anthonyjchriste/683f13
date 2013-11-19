@@ -1,15 +1,12 @@
 package edu.achriste.ics683.image;
 
-import java.awt.image.BufferedImage;
+import Jama.Matrix;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import Jama.Matrix;
 
 public class PhotometricStereo {
   private Matrix[] matrices;
@@ -26,26 +23,78 @@ public class PhotometricStereo {
     }
 
     this.sourceMatrix = getSourceMatrix(sourcesPath);
+    this.getSurfaceDescription();
+    this.writeImageFiles();
   }
 
-  public void getSurfaceDescription() {
+  private void getSurfaceDescription() {
     gradients = new Matrix[matrices[0].getRowDimension()][matrices[0].getColumnDimension()];
     albedo = new double[matrices[0].getRowDimension()][matrices[0].getColumnDimension()];
     normals = new Matrix[matrices[0].getRowDimension()][matrices[0].getColumnDimension()];
+    Matrix intensityMatrix;
 
     for(int r = 0; r < matrices[0].getRowDimension(); r++) {
       for(int c = 0; c < matrices[0].getColumnDimension(); c++) {
-        gradients[r][c] = this.sourceMatrix.times(getIntensityMatrix(r, c));
+        intensityMatrix = getIntensityMatrix(r, c);
+        //gradients[r][c] = handleShadows(intensityMatrix).inverse().times(intensityMatrix);
+        gradients[r][c] = sourceMatrix.inverse().times(intensityMatrix);
         albedo[r][c] = MatrixUtils.magnitude(gradients[r][c]);
         normals[r][c] = gradients[r][c].times(1 / albedo[r][c]);
       }
     }
-
-    // TODO: mult by image intensities
-    // TODO: Write to file
   }
 
-  public Matrix getIntensityMatrix(int r, int c) {
+  private Matrix handleShadows(Matrix intensityMatrix) {
+    Matrix matrix = new Matrix(sourceMatrix.getRowDimension(), sourceMatrix.getColumnDimension());
+    for(int r = 0; r < intensityMatrix.getRowDimension(); r++) {
+      for(int c = 0; c < sourceMatrix.getColumnDimension(); c++) {
+        matrix.set(r, c, (sourceMatrix.get(r, c) * intensityMatrix.get(r, 0)));
+      }
+    }
+
+    return matrix;
+  }
+
+  private void writeImageFiles() {
+    EditableImage albedos = new EditableImage(albedo[0].length, albedo.length);
+    EditableImage normalsA = new EditableImage(albedo[0].length, albedo.length);
+    EditableImage normalsB = new EditableImage(albedo[0].length, albedo.length);
+    EditableImage normalsC = new EditableImage(albedo[0].length, albedo.length);
+    double minNormal = Double.MAX_VALUE;
+    double maxNormal = Double.MIN_VALUE;
+
+    for(int r = 0; r < albedo.length; r++) {
+      for(int c = 0; c < albedo[r].length; c++) {
+        albedos.setGrayscale(c, r, (int) (albedo[r][c] * 255));
+        //normalsA.setGrayscale(c, r, (int) normals[r][c].get(0, 0));
+        //normalsB.setGrayscale(c, r, (int) normals[r][c].get(1, 0));
+        //normalsC.setGrayscale(c, r, (int) normals[r][c].get(2, 0));
+
+        minNormal = normals[r][c].get(0, 0) < minNormal ? normals[r][c].get(0, 0) : minNormal;
+        minNormal = normals[r][c].get(1, 0) < minNormal ? normals[r][c].get(0, 0) : minNormal;
+        minNormal = normals[r][c].get(2, 0) < minNormal ? normals[r][c].get(0, 0) : minNormal;
+        maxNormal = normals[r][c].get(0, 0) > maxNormal ? normals[r][c].get(0, 0) : maxNormal;
+        maxNormal = normals[r][c].get(1, 0) > maxNormal ? normals[r][c].get(0, 0) : maxNormal;
+        maxNormal = normals[r][c].get(2, 0) > maxNormal ? normals[r][c].get(0, 0) : maxNormal;
+      }
+    }
+    System.out.format("%f %f\n", minNormal, maxNormal);
+    for(int r = 0; r < albedo.length; r++) {
+      for(int c = 0; c < albedo[r].length; c++) {
+        normalsA.setGrayscale(c, r, (int) ((normals[r][c].get(0, 0) - minNormal) / (maxNormal - minNormal) * 255));
+        normalsB.setGrayscale(c, r, (int) ((normals[r][c].get(1, 0) - minNormal) / (maxNormal - minNormal) * 255));
+        normalsC.setGrayscale(c, r, (int) ((normals[r][c].get(2, 0) - minNormal) / (maxNormal - minNormal) * 255));
+        //System.out.println(normalsA.getGrayscale(c, r));
+      }
+    }
+
+    albedos.writeImage("img/out/albedo.png");
+    normalsA.writeImage("img/out/normals-a.png");
+    normalsB.writeImage("img/out/normals-b.png");
+    normalsC.writeImage("img/out/normals-c.png");
+  }
+
+  private Matrix getIntensityMatrix(int r, int c) {
     Matrix intensityMatrix = new Matrix(matrices.length, 1);
 
     for(int i = 0; i < matrices.length; i++) {
@@ -55,7 +104,7 @@ public class PhotometricStereo {
     return intensityMatrix;
   }
 
-  public Matrix getSourceMatrix(String filePath) {
+  private Matrix getSourceMatrix(String filePath) {
     Scanner in = null;
     List<String> lines = new ArrayList<String>();
 
@@ -82,7 +131,8 @@ public class PhotometricStereo {
       }
     }
 
-    return sourceMatrix.inverse();
+    //return sourceMatrix.inverse();
+    return sourceMatrix;
   }
 
   private double[][] normalizeIntensities(EditableImage image) {
@@ -109,6 +159,5 @@ public class PhotometricStereo {
 
     PhotometricStereo photometricStereo = new PhotometricStereo(images, sourcesFile);
 
-    photometricStereo.getSurfaceDescription();
   }
 }
