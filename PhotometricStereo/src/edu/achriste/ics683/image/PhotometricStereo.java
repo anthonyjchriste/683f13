@@ -14,6 +14,11 @@ public class PhotometricStereo {
   private Matrix[][] gradients;
   private Matrix[][] normals;
   private double[][] albedo;
+  private double[][] heightMap;
+
+  private static final int NORMAL_X = 0;
+  private static final int NORMAL_Y = 1;
+  private static final int NORMAL_Z = 2;
 
   public PhotometricStereo(EditableImage[] editableImages, String sourcesPath) {
     this.matrices = new Matrix[editableImages.length];
@@ -24,6 +29,7 @@ public class PhotometricStereo {
 
     this.sourceMatrix = getSourceMatrix(sourcesPath);
     this.getSurfaceDescription();
+    this.getHeightMap();
     this.writeImageFiles();
   }
 
@@ -31,7 +37,7 @@ public class PhotometricStereo {
     gradients = new Matrix[matrices[0].getRowDimension()][matrices[0].getColumnDimension()];
     albedo = new double[matrices[0].getRowDimension()][matrices[0].getColumnDimension()];
     normals = new Matrix[matrices[0].getRowDimension()][matrices[0].getColumnDimension()];
-    Matrix intensityMatrix;
+    Matrix intensityMatrix = null;
 
     for(int r = 0; r < matrices[0].getRowDimension(); r++) {
       for(int c = 0; c < matrices[0].getColumnDimension(); c++) {
@@ -46,8 +52,8 @@ public class PhotometricStereo {
 
   private Matrix handleShadows(Matrix intensityMatrix) {
     Matrix matrix = new Matrix(sourceMatrix.getRowDimension(), sourceMatrix.getColumnDimension());
-    for(int r = 0; r < intensityMatrix.getRowDimension(); r++) {
-      for(int c = 0; c < sourceMatrix.getColumnDimension(); c++) {
+    for(int r = 0; r < 4; r++) {
+      for(int c = 0; c < 3; c++) {
         matrix.set(r, c, (sourceMatrix.get(r, c) * intensityMatrix.get(r, 0)));
       }
     }
@@ -55,43 +61,81 @@ public class PhotometricStereo {
     return matrix;
   }
 
+  private double normalize(double minVal, double maxVal, double maxNorm, double val) {
+    return  ((val - minVal) / (maxVal - minVal)) * maxNorm;
+  }
+
+  private double min(double val, double min) {
+    return val < min ? val : min;
+  }
+
+  private double max(double val, double max) {
+    return val > max ? val : max;
+  }
+
+  private void getHeightMap() {
+    double sumCol = 0;
+    double sumRow = 0;
+    heightMap = new double[albedo.length][albedo[0].length];
+
+    for(int r = 0; r < heightMap.length; r++) {
+      sumRow += normals[r][0].get(NORMAL_Y, 0);
+      for(int c = 0; c < heightMap[r].length; c++) {
+        sumCol += normals[r][c].get(NORMAL_X, 0);
+        heightMap[r][c] = sumRow + sumCol;
+      }
+      sumCol = 0;
+    }
+  }
+
   private void writeImageFiles() {
     EditableImage albedos = new EditableImage(albedo[0].length, albedo.length);
-    EditableImage normalsA = new EditableImage(albedo[0].length, albedo.length);
-    EditableImage normalsB = new EditableImage(albedo[0].length, albedo.length);
-    EditableImage normalsC = new EditableImage(albedo[0].length, albedo.length);
-    double minNormal = Double.MAX_VALUE;
-    double maxNormal = Double.MIN_VALUE;
+    EditableImage normalsX = new EditableImage(albedo[0].length, albedo.length);
+    EditableImage normalsY = new EditableImage(albedo[0].length, albedo.length);
+    EditableImage normalsZ = new EditableImage(albedo[0].length, albedo.length);
+    EditableImage heightMapImage = new EditableImage(albedo[0].length, albedo.length);
+
+    double minNormalX = Double.MAX_VALUE;
+    double maxNormalX = Double.MIN_VALUE;
+    double minNormalY = Double.MAX_VALUE;
+    double maxNormalY = Double.MIN_VALUE;
+    double minNormalZ = Double.MAX_VALUE;
+    double maxNormalZ = Double.MIN_VALUE;
+    double minHeight = Double.MAX_VALUE;
+    double maxHeight = Double.MIN_VALUE;
 
     for(int r = 0; r < albedo.length; r++) {
       for(int c = 0; c < albedo[r].length; c++) {
         albedos.setGrayscale(c, r, (int) (albedo[r][c] * 255));
-        //normalsA.setGrayscale(c, r, (int) normals[r][c].get(0, 0));
-        //normalsB.setGrayscale(c, r, (int) normals[r][c].get(1, 0));
-        //normalsC.setGrayscale(c, r, (int) normals[r][c].get(2, 0));
 
-        minNormal = normals[r][c].get(0, 0) < minNormal ? normals[r][c].get(0, 0) : minNormal;
-        minNormal = normals[r][c].get(1, 0) < minNormal ? normals[r][c].get(0, 0) : minNormal;
-        minNormal = normals[r][c].get(2, 0) < minNormal ? normals[r][c].get(0, 0) : minNormal;
-        maxNormal = normals[r][c].get(0, 0) > maxNormal ? normals[r][c].get(0, 0) : maxNormal;
-        maxNormal = normals[r][c].get(1, 0) > maxNormal ? normals[r][c].get(0, 0) : maxNormal;
-        maxNormal = normals[r][c].get(2, 0) > maxNormal ? normals[r][c].get(0, 0) : maxNormal;
+        minNormalX = min(normals[r][c].get(NORMAL_X, 0), minNormalX);
+        maxNormalX = max(normals[r][c].get(NORMAL_X, 0), maxNormalX);
+
+        minNormalY = min(normals[r][c].get(NORMAL_Y, 0), minNormalY);
+        maxNormalY = max(normals[r][c].get(NORMAL_Y, 0), maxNormalY);
+
+        minNormalZ = min(normals[r][c].get(NORMAL_Z, 0), minNormalZ);
+        maxNormalZ = max(normals[r][c].get(NORMAL_Z, 0), maxNormalZ);
+
+        minHeight = min(heightMap[r][c], minHeight);
+        maxHeight = max(heightMap[r][c], maxHeight);
       }
     }
-    System.out.format("%f %f\n", minNormal, maxNormal);
+
     for(int r = 0; r < albedo.length; r++) {
       for(int c = 0; c < albedo[r].length; c++) {
-        normalsA.setGrayscale(c, r, (int) ((normals[r][c].get(0, 0) - minNormal) / (maxNormal - minNormal) * 255));
-        normalsB.setGrayscale(c, r, (int) ((normals[r][c].get(1, 0) - minNormal) / (maxNormal - minNormal) * 255));
-        normalsC.setGrayscale(c, r, (int) ((normals[r][c].get(2, 0) - minNormal) / (maxNormal - minNormal) * 255));
-        //System.out.println(normalsA.getGrayscale(c, r));
+        normalsX.setGrayscale(c, r, (int) normalize(minNormalX, maxNormalX, 255, normals[r][c].get(NORMAL_X, 0)));
+        normalsY.setGrayscale(c, r, (int) normalize(minNormalY, maxNormalY, 255, normals[r][c].get(NORMAL_Y, 0)));
+        normalsZ.setGrayscale(c, r, (int) normalize(minNormalZ, maxNormalZ, 255, normals[r][c].get(NORMAL_Z, 0)));
+        heightMapImage.setGrayscale(c, r, (int) normalize(minHeight, maxHeight, 255, heightMap[r][c]));
       }
     }
 
     albedos.writeImage("img/out/albedo.png");
-    normalsA.writeImage("img/out/normals-a.png");
-    normalsB.writeImage("img/out/normals-b.png");
-    normalsC.writeImage("img/out/normals-c.png");
+    normalsX.writeImage("img/out/normals-x.png");
+    normalsY.writeImage("img/out/normals-y.png");
+    normalsZ.writeImage("img/out/normals-z.png");
+    heightMapImage.writeImage("img/out/height-map.png");
   }
 
   private Matrix getIntensityMatrix(int r, int c) {
@@ -131,7 +175,6 @@ public class PhotometricStereo {
       }
     }
 
-    //return sourceMatrix.inverse();
     return sourceMatrix;
   }
 

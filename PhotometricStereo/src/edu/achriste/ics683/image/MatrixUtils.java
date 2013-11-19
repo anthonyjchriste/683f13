@@ -25,4 +25,8 @@ public class MatrixUtils {
     return Math.sqrt(squareSum);
   }
 
+  public static void printMatrix(Matrix matrix) {
+    System.out.println(toString(matrix));
+  }
+
 }
